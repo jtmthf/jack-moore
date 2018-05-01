@@ -4,10 +4,15 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@types/react": "^16.3.13",
+    "@types/react-helmet": "^5.0.6",
+    "apollo-codegen": "^0.19.1",
     "gatsby": "^1.9.247",
     "gatsby-link": "^1.6.40",
     "gatsby-plugin-react-helmet": "^2.0.10",
-    "react-helmet": "^5.2.0"
+    "gatsby-plugin-typescript": "^1.4.20",
+    "react-helmet": "^5.2.0",
+    "typescript": "^2.8.3"
   },
   "keywords": [
     "gatsby"
@@ -17,7 +22,9 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "graphql:introspect": "apollo-codegen introspect-schema http://localhost:8000/___graphql --output schema.json",
+    "graphql:generate": "apollo-codegen generate \"src/**/*.{ts,tsx}\" --schema schema.json --target typescript --tag-name graphql --output src/result-types.ts"
   },
   "devDependencies": {
     "prettier": "^1.12.0"

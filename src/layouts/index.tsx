@@ -1,20 +1,25 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
+import React, { SFC } from 'react';
+import Helmet from 'react-helmet';
 
-import Header from '../components/header'
-import './index.css'
+import Header from '../components/header';
+import { SiteTitleQueryQuery } from '../result-types';
+import './index.css';
 
-const Layout = ({ children, data }) => (
+type Props = {
+  children(): JSX.Element;
+  data: SiteTitleQueryQuery;
+};
+
+const Layout: SFC<Props> = ({ children, data }) => (
   <div>
     <Helmet
-      title={data.site.siteMetadata.title}
+      title={data.site!.siteMetadata!.title!}
       meta={[
         { name: 'description', content: 'Sample' },
         { name: 'keywords', content: 'sample, something' },
       ]}
     />
-    <Header siteTitle={data.site.siteMetadata.title} />
+    <Header siteTitle={data.site!.siteMetadata!.title!} />
     <div
       style={{
         margin: '0 auto',
@@ -26,13 +31,9 @@ const Layout = ({ children, data }) => (
       {children()}
     </div>
   </div>
-)
+);
 
-Layout.propTypes = {
-  children: PropTypes.func,
-}
-
-export default Layout
+export default Layout;
 
 export const query = graphql`
   query SiteTitleQuery {
@@ -42,4 +43,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

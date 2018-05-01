@@ -1,7 +1,11 @@
-import React from 'react'
-import Link from 'gatsby-link'
+import React, { SFC } from 'react';
+import Link from 'gatsby-link';
 
-const Header = ({ siteTitle }) => (
+type Props = {
+  siteTitle: string;
+};
+
+const Header: SFC<Props> = ({ siteTitle }) => (
   <div
     style={{
       background: 'rebeccapurple',
@@ -28,6 +32,6 @@ const Header = ({ siteTitle }) => (
       </h1>
     </div>
   </div>
-)
+);
 
-export default Header
+export default Header;
